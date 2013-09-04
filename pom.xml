@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.amazonaws</groupId>
+	<artifactId>dynamodb-geo</artifactId>
+	<packaging>jar</packaging>
+	<name>Amazon DynamoDB Geo on the AWS SDK for Java</name>
+	<version>1.0.0</version>
+	<description>Amazon DynamoDB Transactions on the AWS SDK for Java
+		provides methods to create, retrieve, and query for geo-spatial data
+		records in Amazon DynamoDB tables.
+	</description>
+	<url>https://aws.amazon.com/dynamodb</url>
+
+	<scm>
+		<url>ssh://git.amazon.com:2222/pkg/GeoForDynamoDB</url>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://aws.amazon.com/apache2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<aws-java-sdk.version>1.5.5</aws-java-sdk.version>
+	</properties>
+
+	<dependencies>
+		<!-- The AWS SDK for Java, and its dependencies on libraries like Jackson, 
+			are required -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>${aws-java-sdk.version}</version>
+		</dependency>
+
+		<!-- JUnit is needed to compile the integration test classes -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.common.geometry</groupId>
+			<artifactId>s2-geometry-java</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/s2-geometry-library/s2-geometry-java.jar
+			</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.common</groupId>
+			<artifactId>guava-r09</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/guava-r09/guava-r09.jar</systemPath>
+		</dependency>
+	</dependencies>
+
+	<developers>
+		<developer>
+			<id>amazonwebservices</id>
+			<organization>Amazon Web Services</organization>
+			<organizationUrl>https://aws.amazon.com</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

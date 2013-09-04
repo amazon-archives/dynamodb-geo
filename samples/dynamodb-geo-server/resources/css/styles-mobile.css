@@ -1,0 +1,98 @@
+@media only screen and (max-device-width: 480px) {
+	html, html body {
+		height: 120%;
+		overflow: hidden;
+	}
+
+	div#header,
+	div#body,
+	div#footer,
+	fieldset {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	fieldset {
+		border: none;
+		padding: 0;
+	}
+
+	fieldset legend {
+		padding: 0 10px;
+		font-weight: bold;
+	}
+
+	body fieldset legend {
+		color: #333 !important;
+		background-color: transparent !important;
+		background-image: none !important;
+		text-shadow: none !important;
+	}
+
+	body.register fieldset legend {
+		color: #06c !important;
+	}
+
+	body.success fieldset legend {
+		color: #093 !important;
+	}
+
+	body.failure fieldset legend {
+		color: #c00 !important;
+	}
+
+	h1 {
+		font-size: 1.3em;
+		text-transform: none;
+		font-weight: bold;
+		margin: 0;
+		padding: 0.5em 1em;
+		text-align: center;
+		width: auto !important;
+		overflow: hidden;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+	}
+
+	table.information-box {
+		width: 100% !important;
+		overflow: hidden;
+		background-color: #eee;
+	}
+
+	table.information-box td {
+		width: 100% !important;
+		margin: 0;
+		padding: 0.5em 0;
+		text-align: center;
+	}
+
+	table.information-box td.th {
+		display: none;
+	}
+
+	table.information-box td input {
+		width: 100% !important;
+		display: block;
+	}
+
+	table.information-box td input[type=submit] {
+		font-size: 1em;
+		line-height: 1.3em;
+	}
+
+	p.message {
+		font-size: 1em;
+		line-height: 1.3em;
+		text-align: center;
+		padding: 0.5em;
+	}
+
+	div#footer p {
+		width: auto;
+		overflow: hidden;
+	}
+}
