@@ -1,16 +1,15 @@
 #Geo Library for Amazon DynamoDB
 
-Built using the low-level [Amazon DynamoDB][dynamodb] client in the [AWS SDK for Java][java-sdk-website], this new high-level library gives you the ability to create geo-spatial data items. When stored in a DynamoDB table, items include latitude and longitude, in addition to the attribute-value pairs maintained by the application. The library takes care of creating and maintaining the hash keys, geohashes, and indexes that allow for fast and efficient execution of location-based queries.
+The Geo Library for [Amazon DynamoDB][dynamodb] enables Java developers to easily create and query geospatial data. The library takes care of managing the geohash indexes required for fast and efficient execution of location-based queries over a table of items representing points of interest - latitude/longitude pairs.
 
-Along with this library we provide a sample AWS ElasticBeanstalk application and a sample iOS project which demonstrates usage.
+Along with this library we provide sample applications demonstrating usage of the library for a cloud-backed mobile app development scenario. You can get up and running quickly with a sample [AWS ElasticBeanstalk][eb] application and a sample iOS project.
 
 ##Features
-
 * **Box Queries:** Return all of the items that fall within a pair of geo points that define a rectangle as projected onto a sphere.
-* **Radius Queries:** Return all of the items that are within a given radius.
-* **Basic CRUD Operations:** Create, get, update, and delete geo-spatial data items.
-* **Easy to Use:** Follow the same patterns that the AWS SDK for Java uses so if you are already familiar with the AWS SDK for Java, it's easy to get started.
-* **Customizable:** Allow access to raw request and result objects of the AWS SDK for Java for customizability.
+* **Radius Queries:** Return all of the items that are within a given radius of a geo point.
+* **Basic CRUD Operations:** Create, retrieve, update, and delete geospatial data items.
+* **Easy Integration:** Adds functionality to the AWS SDK for Java in your server application.
+* **Customizable:** Access to raw request and result objects from the AWS SDK for Java.
 
 ##Getting Started
 ###Setup Environment
@@ -44,7 +43,7 @@ Along with this library we provide a sample AWS ElasticBeanstalk application and
 ###Run the Sample iOS App
 1. Open the Xcode project under `samples/dynamodb-geo-ios/dynamodb-geo-ios.xcodeproj`.
 2. Open **AWSConstants.m**.
-3. Update **YOUR-ENVIRONMENT** part of `http://YOUR-ENVIRONMENT.elasticbeanstalk.com/dynamodb-geo` with your actual environment URL. **NOTE:** Please read **Security Considerations** section.
+3. Update **YOUR-ENVIRONMENT** part of `http://YOUR-ENVIRONMENT.elasticbeanstalk.com/dynamodb-geo` with your actual environment URL.
 4. Click **Run** on Xcode to run the sample iOS app.
 
 ##Building From Source
@@ -61,6 +60,7 @@ Once you check out the code from GitHub, you can build it using **Maven**: `mvn 
 * [AWS ElasticBeanstalk Forum][eb-forum]
 
 ###Mobile Development
+* [AWS Mobile Developer Center][mobiledev]
 * [Mobile Development AWS Blog][mobile-sdk-blog]
 * [Mobile Development Forum][mobile-sdk-forum]
 
@@ -82,7 +82,8 @@ Once you check out the code from GitHub, you can build it using **Maven**: `mvn 
 [mobile-sdk-blog]: http://mobile.awsblog.com/
 [docs-signup]: http://docs.aws.amazon.com/AWSSdkDocsJava/latest/DeveloperGuide/java-dg-setup.html
 [management-console]: https://console.aws.amazon.com/console/home
-[regions-endpoints]: [http://docs.aws.amazon.com/general/latest/gr/rande.html]
+[regions-endpoints]: http://docs.aws.amazon.com/general/latest/gr/rande.html
 [eb-https]: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https.html
 [eb]: http://aws.amazon.com/elasticbeanstalk
 [eb-forum]: https://forums.aws.amazon.com/forum.jspa?forumID=86
+[mobiledev]: https://aws.amazon.com/mobile/

@@ -13,10 +13,10 @@
  * permissions and limitations under the License.
  */
 /**
- * <b>Geo-spatial Library for DynamoDB</b>
+ * <b>Geo Library for Amazon DynamoDB</b>
  * <p>
  * This server library will enable you to create, retrieve, and query for geo-spatial data records in DynamoDB. Geo data
- * is popular in mobile apps, and along with this library we have sample mobile projects for iOS and Android which
+ * is popular in mobile apps, and along with this library we have sample mobile projects for iOS which
  * demonstrate usage.
  * </p>
  * <b>Geo-spatial data in a nutshell</b>
@@ -36,9 +36,9 @@
  * </p>
  * <b>Major components:</b>
  * <ul>
- * <li>Geo Library for Amazon DynamoDB: Java library which provides a high-level interface to DynamoDB-backed data storage of geo
- * objects. This library can be added to your existing server backend. For more help getting started, we include a
- * reference sample Java server for Elastic Beanstalk.</li>
+ * <li>Geo Library for Amazon DynamoDB: Java library which provides a high-level interface to DynamoDB-backed data
+ * storage of geo objects. This library can be added to your existing server backend. For more help getting started, we
+ * include a reference sample Java server for AWS ElasticBeanstalk.</li>
  * <li>
  * DynamoDB tables: you create and configure these tables to store your geo records. The library takes care of
  * determining the proper hash keys, range keys, and indexes. These keys and indexes are how queries can "find" the

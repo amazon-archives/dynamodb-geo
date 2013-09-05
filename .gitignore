@@ -53,3 +53,4 @@ samples/dynamodb-geo-server/target
 samples/dynamodb-geo-server/bin
 samples/dynamodb-geo-server/.settings
 .classpath
+target

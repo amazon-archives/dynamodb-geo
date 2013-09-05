@@ -62,8 +62,7 @@
 				} else if (Utilities.getInstance().getStatus() == Utilities.Status.INSERTING_DATA_TO_TABLE) {
 			%>
 			<p class="message">Geo Library for Amazon DynamoDB Sample Server
-				is inserting test data into the table. This may take a few minutes.
-				Please wait.</p>
+				is inserting test data into the table. This may take 10 to 20 minutes. Please wait.</p>
 			<%
 				}
 			%>
