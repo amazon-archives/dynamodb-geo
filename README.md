@@ -4,6 +4,9 @@ The Geo Library for [Amazon DynamoDB][dynamodb] enables Java developers to easil
 
 Along with this library we provide sample applications demonstrating usage of the library for a cloud-backed mobile app development scenario. You can get up and running quickly with a sample [AWS ElasticBeanstalk][eb] application and a sample iOS project.
 
+##API Reference
+[Geo Library for Amazon DynamoDB Javadoc][geo-library-javadoc]
+
 ##Features
 * **Box Queries:** Return all of the items that fall within a pair of geo points that define a rectangle as projected onto a sphere.
 * **Radius Queries:** Return all of the items that are within a given radius of a geo point.
@@ -87,3 +90,4 @@ Once you check out the code from GitHub, you can build it using **Maven**: `mvn 
 [eb]: http://aws.amazon.com/elasticbeanstalk
 [eb-forum]: https://forums.aws.amazon.com/forum.jspa?forumID=86
 [mobiledev]: https://aws.amazon.com/mobile/
+[geo-library-javadoc]: http://awslabs.github.io/dynamodb-geo/
