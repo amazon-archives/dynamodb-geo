@@ -6,9 +6,8 @@
 	<packaging>jar</packaging>
 	<name>Amazon DynamoDB Geo on the AWS SDK for Java</name>
 	<version>1.0.0</version>
-	<description>Amazon DynamoDB Transactions on the AWS SDK for Java
-		provides methods to create, retrieve, and query for geo-spatial data
-		records in Amazon DynamoDB tables.
+	<description>Geo Library for Amazon DynamoDB provides methods to create, retrieve, 
+	and query for geo-spatial data records in Amazon DynamoDB tables.
 	</description>
 	<url>https://aws.amazon.com/dynamodb</url>
 

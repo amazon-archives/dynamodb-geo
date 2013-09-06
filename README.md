@@ -52,6 +52,17 @@ Along with this library we provide sample applications demonstrating usage of th
 ##Building From Source
 Once you check out the code from GitHub, you can build it using **Maven**: `mvn package`
 
+##Limitations
+
+###Queries retrieve all paginated data
+Although low level [DynamoDB Query][dynamodb-query] requests return paginated results, this library automatically pages through the entire result set. When querying a large area with many points, a lot of Read Capacity Units may be consumed.
+
+###More Read Capacity Units
+The library retrieves candidate Geo points from the cells which intersect the requested bounds. The library then post-processes the candidate data, filtering out the specific points which are outside the requested bounds. Therefore, the consumed Read Capacity Units will be higher than the final results dataset.
+
+###No composite key support
+Currently this library does not support composite keys. You cannot add tags to Geo points and query for points with a specific tag. You need to create a table for each tag and store them separately.
+
 ##Reference
 
 ###Amazon DynamoDB
@@ -91,3 +102,4 @@ Once you check out the code from GitHub, you can build it using **Maven**: `mvn 
 [eb-forum]: https://forums.aws.amazon.com/forum.jspa?forumID=86
 [mobiledev]: https://aws.amazon.com/mobile/
 [geo-library-javadoc]: http://awslabs.github.io/dynamodb-geo/
+[dynamodb-query]: http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html

@@ -6,7 +6,8 @@
 	<packaging>war</packaging>
 	<name>Amazon DynamoDB Geo Sample Server</name>
 	<version>1.0.0</version>
-	<description>descriptions...
+	<description>Geo Library for Amazon DynamoDB Sample Server demonstrates usage 
+	of the library for a cloud-backed mobile app development scenario.
 	</description>
 	<url>https://aws.amazon.com/dynamodb</url>
 
