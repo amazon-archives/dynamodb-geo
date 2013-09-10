@@ -60,8 +60,14 @@ Although low level [DynamoDB Query][dynamodb-query] requests return paginated re
 ###More Read Capacity Units
 The library retrieves candidate Geo points from the cells which intersect the requested bounds. The library then post-processes the candidate data, filtering out the specific points which are outside the requested bounds. Therefore, the consumed Read Capacity Units will be higher than the final results dataset.
 
+###High memory consumption
+Because all paginated Query results are loaded into memory and processed, it may consume substantial amounts of memory for large datasets.
+
 ###No composite key support
 Currently this library does not support composite keys. You cannot add tags to Geo points and query for points with a specific tag. You need to create a table for each tag and store them separately.
+
+###Dataset density limitation
+Geohash used in this library is roughly centimeter precision. This library is not suitable if your dataset has much higher density.
 
 ##Reference
 

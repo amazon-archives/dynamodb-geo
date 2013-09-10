@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  * 
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  * 
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -25,9 +25,9 @@ public class GeohashRange {
 	private long rangeMin;
 	private long rangeMax;
 
-	public GeohashRange(long rangeMin, long rangeMax) {
-		this.rangeMin = rangeMin;
-		this.rangeMax = rangeMax;
+	public GeohashRange(long range1, long range2) {
+		this.rangeMin = Math.min(range1, range2);
+		this.rangeMax = Math.max(range1, range2);
 	}
 
 	public boolean tryMerge(GeohashRange range) {

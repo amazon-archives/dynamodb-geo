@@ -165,8 +165,8 @@ public class GeoDataManager {
 	 * <b>Sample usage:</b>
 	 * 
 	 * <pre>
-	 * GeoPoint minPoint = new GeoPoint(45.5, -120.3);
-	 * GeoPoint maxPoint = new GeoPoint(49.5, -124.3);
+	 * GeoPoint minPoint = new GeoPoint(45.5, -124.3);
+	 * GeoPoint maxPoint = new GeoPoint(49.5, -120.3);
 	 * 
 	 * QueryRectangleRequest queryRectangleRequest = new QueryRectangleRequest(minPoint, maxPoint);
 	 * QueryRectangleResult queryRectangleResult = geoIndexManager.queryRectangle(queryRectangleRequest);
