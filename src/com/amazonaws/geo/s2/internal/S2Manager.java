@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  * 
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  * 
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import com.amazonaws.geo.GeoDataManagerConfiguration;
 import com.amazonaws.geo.model.GeoPoint;
 import com.google.common.geometry.S2Cell;
 import com.google.common.geometry.S2CellId;
@@ -122,7 +121,13 @@ public class S2Manager {
 	}
 
 	public static long generateHashKey(long geohash, int hashKeyLength) {
-		long denominator = (long) Math.pow(10, GeoDataManagerConfiguration.GEOHASH_LENGTH - hashKeyLength);
-		return (long) geohash / denominator;
+		if (geohash < 0) {
+			// Counteract "-" at beginning of geohash.
+			hashKeyLength++;
+		}
+
+		String geohashString = String.valueOf(geohash);
+		long denominator = (long) Math.pow(10, geohashString.length() - hashKeyLength);
+		return geohash / denominator;
 	}
 }

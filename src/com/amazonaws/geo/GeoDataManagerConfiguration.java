@@ -23,7 +23,6 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 public class GeoDataManagerConfiguration {
 
 	// Public constants
-	public static final int GEOHASH_LENGTH = 19;
 	public static final long MERGE_THRESHOLD = 2;
 
 	// Default values
