@@ -54,20 +54,26 @@ Once you check out the code from GitHub, you can build it using **Maven**: `mvn 
 
 ##Limitations
 
+###Java focused
+Internally, Geo Library uses the [S2 Geometry Library](https://code.google.com/p/s2-geometry-library-java/) for spherical math, and the library is available only in Java and C++. For now, we are focusing on Java, and we don't have short term plans to port Geo Library for other languages.
+
+###No composite key support
+Currently, the library does not support composite keys. You may want to add tags such as restaurant, bar, and coffee shop, and search locations of a specific category; however, it is currently not possible. You need to create a table for each tag and store the items separately.
+
 ###Queries retrieve all paginated data
 Although low level [DynamoDB Query][dynamodb-query] requests return paginated results, this library automatically pages through the entire result set. When querying a large area with many points, a lot of Read Capacity Units may be consumed.
 
 ###More Read Capacity Units
-The library retrieves candidate Geo points from the cells which intersect the requested bounds. The library then post-processes the candidate data, filtering out the specific points which are outside the requested bounds. Therefore, the consumed Read Capacity Units will be higher than the final results dataset.
+The library retrieves candidate Geo points from the cells that intersect the requested bounds. The library then post-processes the candidate data, filtering out the specific points that are outside the requested bounds. Therefore, the consumed Read Capacity Units will be higher than the final results dataset.
 
 ###High memory consumption
-Because all paginated Query results are loaded into memory and processed, it may consume substantial amounts of memory for large datasets.
+Because all paginated `Query` results are loaded into memory and processed, it may consume substantial amounts of memory for large datasets.
 
-###No composite key support
-Currently this library does not support composite keys. You cannot add tags to Geo points and query for points with a specific tag. You need to create a table for each tag and store them separately.
+###The server is essential
+Because Geo Library calls multiple DynamoDB `Query` requests and processes the results in memory, it is not suitable for mobile device use. You should maintain a Java server, and use the library on the server.
 
 ###Dataset density limitation
-Geohash used in this library is roughly centimeter precision. This library is not suitable if your dataset has much higher density.
+The Geohash used in this library is roughly centimeter precision. Therefore, the library is not suitable if your dataset has much higher density.
 
 ##Reference
 
