@@ -24,6 +24,7 @@ import java.util.concurrent.Future;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.geo.dynamodb.internal.DynamoDBManager;
 import com.amazonaws.geo.dynamodb.internal.DynamoDBUtil;
+import com.amazonaws.geo.model.BatchWritePointResult;
 import com.amazonaws.geo.model.DeletePointRequest;
 import com.amazonaws.geo.model.DeletePointResult;
 import com.amazonaws.geo.model.GeoPoint;
@@ -129,6 +130,35 @@ public class GeoDataManager {
 	 */
 	public PutPointResult putPoint(PutPointRequest putPointRequest) {
 		return dynamoDBManager.putPoint(putPointRequest);
+	}
+	
+	/**
+	 * <p>
+	 * Put a list of points into the Amazon DynamoDB table. Once put, you cannot update attributes specified in
+	 * GeoDataManagerConfiguration: hash key, range key, geohash and geoJson. If you want to update these columns, you
+	 * need to insert a new record and delete the old record.
+	 * </p>
+	 * <b>Sample usage:</b>
+	 * 
+	 * <pre>
+	 * GeoPoint geoPoint = new GeoPoint(47.5, -122.3);
+	 * AttributeValue rangeKeyValue = new AttributeValue().withS(&quot;a6feb446-c7f2-4b48-9b3a-0f87744a5047&quot;);
+	 * AttributeValue titleValue = new AttributeValue().withS(&quot;Original title&quot;);
+	 * 
+	 * PutPointRequest putPointRequest = new PutPointRequest(geoPoint, rangeKeyValue);
+	 * putPointRequest.getPutItemRequest().getItem().put(&quot;title&quot;, titleValue);
+	 * List<PutPointRequest> putPointRequests = new ArrayList<PutPointRequest>();
+	 * putPointRequests.add(putPointRequest);
+	 * BatchWritePointResult batchWritePointResult = geoDataManager.batchWritePoints(putPointRequests);
+	 * </pre>
+	 * 
+	 * @param putPointRequests
+	 *            Container for the necessary parameters to execute put point request.
+	 * 
+	 * @return Result of batch put point request.
+	 */	
+	public BatchWritePointResult batchWritePoints(List<PutPointRequest> putPointRequests) {
+		return dynamoDBManager.batchWritePoints(putPointRequests);
 	}
 
 	/**

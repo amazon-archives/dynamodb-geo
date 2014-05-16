@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.amazonaws.geo.GeoDataManagerConfiguration;
+import com.amazonaws.geo.model.BatchWritePointResult;
 import com.amazonaws.geo.model.DeletePointRequest;
 import com.amazonaws.geo.model.DeletePointResult;
 import com.amazonaws.geo.model.GeohashRange;
@@ -33,6 +34,8 @@ import com.amazonaws.geo.model.UpdatePointResult;
 import com.amazonaws.geo.s2.internal.S2Manager;
 import com.amazonaws.geo.util.GeoJsonMapper;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.BatchWriteItemRequest;
+import com.amazonaws.services.dynamodbv2.model.BatchWriteItemResult;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.DeleteItemRequest;
@@ -41,11 +44,13 @@ import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
 import com.amazonaws.services.dynamodbv2.model.GetItemResult;
 import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import com.amazonaws.services.dynamodbv2.model.PutItemResult;
+import com.amazonaws.services.dynamodbv2.model.PutRequest;
 import com.amazonaws.services.dynamodbv2.model.QueryRequest;
 import com.amazonaws.services.dynamodbv2.model.QueryResult;
 import com.amazonaws.services.dynamodbv2.model.ReturnConsumedCapacity;
 import com.amazonaws.services.dynamodbv2.model.UpdateItemRequest;
 import com.amazonaws.services.dynamodbv2.model.UpdateItemResult;
+import com.amazonaws.services.dynamodbv2.model.WriteRequest;
 
 public class DynamoDBManager {
 	private GeoDataManagerConfiguration config;
@@ -139,6 +144,34 @@ public class DynamoDBManager {
 		PutPointResult putPointResult = new PutPointResult(putItemResult);
 
 		return putPointResult;
+	}
+	
+	public BatchWritePointResult batchWritePoints(List<PutPointRequest> putPointRequests) {
+		BatchWriteItemRequest batchItemRequest = new BatchWriteItemRequest();
+		List<WriteRequest> writeRequests = new ArrayList<WriteRequest>();
+		for (PutPointRequest putPointRequest : putPointRequests) {
+			long geohash = S2Manager.generateGeohash(putPointRequest.getGeoPoint());
+			long hashKey = S2Manager.generateHashKey(geohash, config.getHashKeyLength());
+			String geoJson = GeoJsonMapper.stringFromGeoObject(putPointRequest.getGeoPoint());
+
+			PutRequest putRequest = putPointRequest.getPutRequest();
+			AttributeValue hashKeyValue = new AttributeValue().withN(String.valueOf(hashKey));
+			putRequest.getItem().put(config.getHashKeyAttributeName(), hashKeyValue);
+			putRequest.getItem().put(config.getRangeKeyAttributeName(), putPointRequest.getRangeKeyValue());
+			AttributeValue geohashValue = new AttributeValue().withN(Long.toString(geohash));
+			putRequest.getItem().put(config.getGeohashAttributeName(), geohashValue);
+			AttributeValue geoJsonValue = new AttributeValue().withS(geoJson);
+			putRequest.getItem().put(config.getGeoJsonAttributeName(), geoJsonValue);			
+			
+			WriteRequest writeRequest = new WriteRequest(putRequest);
+			writeRequests.add(writeRequest);
+		}
+		Map<String, List<WriteRequest>> requestItems = new HashMap<String, List<WriteRequest>>();
+		requestItems.put(config.getTableName(), writeRequests);
+		batchItemRequest.setRequestItems(requestItems);
+		BatchWriteItemResult batchWriteItemResult = config.getDynamoDBClient().batchWriteItem(batchItemRequest);
+		BatchWritePointResult batchWritePointResult = new BatchWritePointResult(batchWriteItemResult);
+		return batchWritePointResult;
 	}
 
 	public UpdatePointResult updatePoint(UpdatePointRequest updatePointRequest) {
