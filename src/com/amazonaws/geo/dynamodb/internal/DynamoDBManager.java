@@ -85,12 +85,7 @@ public class DynamoDBManager {
 
 			queryRequest.withTableName(config.getTableName()).withKeyConditions(keyConditions)
 					.withIndexName(config.getGeohashIndexName()).withConsistentRead(true)
-					.withReturnConsumedCapacity(ReturnConsumedCapacity.TOTAL);
-
-			if (lastEvaluatedKey != null) {
-				queryRequest.addExclusiveStartKeyEntry(config.getHashKeyAttributeName(),
-						lastEvaluatedKey.get(config.getHashKeyAttributeName()));
-			}
+					.withReturnConsumedCapacity(ReturnConsumedCapacity.TOTAL).withExclusiveStartKey(lastEvaluatedKey);
 
 			QueryResult queryResult = config.getDynamoDBClient().query(queryRequest);
 			queryResults.add(queryResult);
