@@ -95,7 +95,6 @@ public class GeoDynamoDBServlet extends HttpServlet {
 		ddb.setRegion(region);
 
 		if(System.getProperties().containsKey("is_local")) {
-			System.out.println("local");
 			ddb.setEndpoint("http://localhost:8000");
 		}
 
