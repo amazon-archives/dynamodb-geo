@@ -65,6 +65,10 @@ public class Utilities {
 		return regionName != null && regionName.length() > 0;
 	}
 
+	public boolean isRunningLocal() {
+		return System.getProperties().containsKey("is_local");
+	}
+
 	public void setupTable() {
 		setupGeoDataManager();
 
@@ -97,6 +101,10 @@ public class Utilities {
 
 			AmazonDynamoDBClient ddb = new AmazonDynamoDBClient(credentials, clientConfiguration);
 			ddb.setRegion(region);
+
+			if(isRunningLocal()) {
+				ddb.setEndpoint("http://localhost:8000");
+			}
 
 			GeoDataManagerConfiguration config = new GeoDataManagerConfiguration(ddb, tableName);
 			geoDataManager = new GeoDataManager(config);

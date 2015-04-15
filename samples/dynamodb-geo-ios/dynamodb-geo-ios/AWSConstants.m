@@ -15,7 +15,7 @@
 
 #import "AWSConstants.h"
 
-NSString *const AWSElasticBeanstalkEndpoint = @"http://YOUR-ENVIRONMENT.elasticbeanstalk.com/dynamodb-geo";
+NSString *const AWSElasticBeanstalkEndpoint = @"http://localhost:9090/dynamodb-geo";
 
 @implementation AWSConstants
 
