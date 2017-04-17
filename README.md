@@ -1,27 +1,27 @@
-#Geo Library for Amazon DynamoDB
+# Geo Library for Amazon DynamoDB
 
 The Geo Library for [Amazon DynamoDB][dynamodb] enables Java developers to easily create and query geospatial data. The library takes care of managing the geohash indexes required for fast and efficient execution of location-based queries over a table of items representing points of interest - latitude/longitude pairs.
 
 Along with this library we provide sample applications demonstrating usage of the library for a cloud-backed mobile app development scenario. You can get up and running quickly with a sample [AWS ElasticBeanstalk][eb] application and a sample iOS project.
 
-##API Reference
+## API Reference
 [Geo Library for Amazon DynamoDB Javadoc][geo-library-javadoc]
 
-##Features
+## Features
 * **Box Queries:** Return all of the items that fall within a pair of geo points that define a rectangle as projected onto a sphere.
 * **Radius Queries:** Return all of the items that are within a given radius of a geo point.
 * **Basic CRUD Operations:** Create, retrieve, update, and delete geospatial data items.
 * **Easy Integration:** Adds functionality to the AWS SDK for Java in your server application.
 * **Customizable:** Access to raw request and result objects from the AWS SDK for Java.
 
-##Getting Started
-###Setup Environment
+## Getting Started
+### Setup Environment
 1. **Sign up for AWS** - Before you begin, you need an AWS account. Please see the [AWS Account and Credentials][docs-signup] section of the developer guide for information about how to create an AWS account and retrieve your AWS credentials.
 2. **Minimum Java requirements** - To run the SDK you will need **Java 1.6+**. We strongly recommend Java 6 Update 24 at the minimum to mitigate the parseDouble DoS attacks. For more information about the requirements and optimum settings for the SDK, please see the [Java Development Environment][docs-signup] section of the developer guide.
 3. **Minimum iOS requirements** - The sample iOS app supports iOS 5 and above.
 4. **Download Geo Library for Amazon DynamoDB** - To download the code from GitHub, simply clone the repository by typing: `git clone https://github.com/awslabs/dynamodb-geo`.
 
-###Run the Sample Server App
+### Run the Sample Server App
 1. Go to [AWS Management Console][management-console] and select **ElasticBeanstalk**.
 2. Click **Create a New Application**.
 3. Specify **Application name** and click **Create**.
@@ -43,54 +43,54 @@ Along with this library we provide sample applications demonstrating usage of th
 19. The status on the website will change as follows: **preparing to start** > **creating a table** > **inserting test data into the table** > **running**.
 20. Wait until the website says **Congratulations! Geo Library for Amazon DynamoDB Sample Server is running**. This may take 10 to 20 minutes.
 
-###Run the Sample iOS App
+### Run the Sample iOS App
 1. Open the Xcode project under `samples/dynamodb-geo-ios/dynamodb-geo-ios.xcodeproj`.
 2. Open **AWSConstants.m**.
 3. Update **YOUR-ENVIRONMENT** part of `http://YOUR-ENVIRONMENT.elasticbeanstalk.com/dynamodb-geo` with your actual environment URL.
 4. Click **Run** on Xcode to run the sample iOS app.
 
-##Building From Source
+## Building From Source
 Once you check out the code from GitHub, you can build it using **Maven**: `mvn package`
 
-##Limitations
+## Limitations
 
-###Java focused
+### Java focused
 Internally, Geo Library uses the [S2 Geometry Library](https://code.google.com/p/s2-geometry-library-java/) for spherical math, and the library is available only in Java and C++. For now, we are focusing on Java, and we don't have short term plans to port Geo Library for other languages.
 
-###No composite key support
+### No composite key support
 Currently, the library does not support composite keys. You may want to add tags such as restaurant, bar, and coffee shop, and search locations of a specific category; however, it is currently not possible. You need to create a table for each tag and store the items separately.
 
-###Queries retrieve all paginated data
+### Queries retrieve all paginated data
 Although low level [DynamoDB Query][dynamodb-query] requests return paginated results, this library automatically pages through the entire result set. When querying a large area with many points, a lot of Read Capacity Units may be consumed.
 
-###More Read Capacity Units
+### More Read Capacity Units
 The library retrieves candidate Geo points from the cells that intersect the requested bounds. The library then post-processes the candidate data, filtering out the specific points that are outside the requested bounds. Therefore, the consumed Read Capacity Units will be higher than the final results dataset.
 
-###High memory consumption
+### High memory consumption
 Because all paginated `Query` results are loaded into memory and processed, it may consume substantial amounts of memory for large datasets.
 
-###The server is essential
+### The server is essential
 Because Geo Library calls multiple DynamoDB `Query` requests and processes the results in memory, it is not suitable for mobile device use. You should maintain a Java server, and use the library on the server.
 
-###Dataset density limitation
+### Dataset density limitation
 The Geohash used in this library is roughly centimeter precision. Therefore, the library is not suitable if your dataset has much higher density.
 
-##Reference
+## Reference
 
-###Amazon DynamoDB
+### Amazon DynamoDB
 * [Amazon DynamoDB][dynamodb]
 * [Amazon DynamoDB Forum][dynamodb-forum]
 
-###AWS ElasticBeanstalk
+### AWS ElasticBeanstalk
 * [AWS ElasticBeanstalk][eb]
 * [AWS ElasticBeanstalk Forum][eb-forum]
 
-###Mobile Development
+### Mobile Development
 * [AWS Mobile Developer Center][mobiledev]
 * [Mobile Development AWS Blog][mobile-sdk-blog]
 * [Mobile Development Forum][mobile-sdk-forum]
 
-###Java Development
+### Java Development
 * [AWS SDK for Java][java-sdk-website]
 * [AWS SDK for Java API Reference][docs-api]
 * [AWS SDK for Java Developer Guide][docs-guide]
