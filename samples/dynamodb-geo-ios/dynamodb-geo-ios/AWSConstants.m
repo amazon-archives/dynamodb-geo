@@ -17,6 +17,12 @@
 
 NSString *const AWSElasticBeanstalkEndpoint = @"http://YOUR-ENVIRONMENT.elasticbeanstalk.com/dynamodb-geo";
 
+/*
+ * Use this instead to run on a local tomcat instance
+ */
+
+//NSString *const AWSElasticBeanstalkEndpoint = @"http://localhost:9090/dynamodb-geo";
+
 @implementation AWSConstants
 
 @end

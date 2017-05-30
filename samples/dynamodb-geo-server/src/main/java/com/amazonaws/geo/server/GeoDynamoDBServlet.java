@@ -83,15 +83,20 @@ public class GeoDynamoDBServlet extends HttpServlet {
 	}
 
 	private void setupGeoDataManager() {
+		System.out.println("setup");
 		String accessKey = System.getProperty("AWS_ACCESS_KEY_ID");
 		String secretKey = System.getProperty("AWS_SECRET_KEY");
 		String tableName = System.getProperty("PARAM1");
 		String regionName = System.getProperty("PARAM2");
-
 		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+
 		AmazonDynamoDBClient ddb = new AmazonDynamoDBClient(credentials);
 		Region region = Region.getRegion(Regions.fromName(regionName));
 		ddb.setRegion(region);
+
+		if(System.getProperties().containsKey("is_local")) {
+			ddb.setEndpoint("http://localhost:8000");
+		}
 
 		config = new GeoDataManagerConfiguration(ddb, tableName);
 		geoDataManager = new GeoDataManager(config);

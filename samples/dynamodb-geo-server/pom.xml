@@ -103,6 +103,34 @@
 						</webResources>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<!-- http port -->
+						<port>9090</port>
+						<!-- application path always starts with /-->
+						<path>/</path>
+						<!-- optional path to a context file -->
+						<contextFile>${tomcatContextXml}</contextFile>
+						<!-- optional system propoerties you want to add -->
+                        <systemProperties>
+							<AWS_ACCESS_KEY_ID>XXXXXXXXX</AWS_ACCESS_KEY_ID>
+							<AWS_SECRET_KEY>YYYYYYYYY</AWS_SECRET_KEY>
+							<PARAM1>geo-test</PARAM1>
+							<PARAM2>us-east-1</PARAM2>
+							<is_local>true</is_local>
+                        </systemProperties>
+						<!-- if you want to use test dependencies rather than only runtime -->
+						<useTestClasspath>false</useTestClasspath>
+						<!-- optional if you want to add some extra directories into the classloader -->
+						<additionalClasspathDirs>
+							<additionalClasspathDir></additionalClasspathDir>
+						</additionalClasspathDirs>
+					</configuration>
+
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -120,6 +148,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 
