@@ -17,7 +17,7 @@ package com.amazonaws.geo.util;
 
 import java.io.IOException;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.amazonaws.geo.model.GeoObject;
 import com.amazonaws.geo.model.GeoPoint;

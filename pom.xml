@@ -5,7 +5,7 @@
 	<artifactId>dynamodb-geo</artifactId>
 	<packaging>jar</packaging>
 	<name>Amazon DynamoDB Geo on the AWS SDK for Java</name>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<description>Geo Library for Amazon DynamoDB provides methods to create, retrieve, 
 	and query for geo-spatial data records in Amazon DynamoDB tables.
 	</description>
@@ -24,7 +24,7 @@
 	</licenses>
 
 	<properties>
-		<aws-java-sdk.version>1.5.5</aws-java-sdk.version>
+		<aws-java-sdk.version>1.10.61</aws-java-sdk.version>
 	</properties>
 
 	<dependencies>

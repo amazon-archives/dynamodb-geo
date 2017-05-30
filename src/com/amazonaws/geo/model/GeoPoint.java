@@ -15,7 +15,7 @@
 
 package com.amazonaws.geo.model;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class GeoPoint extends GeoObject {
 
