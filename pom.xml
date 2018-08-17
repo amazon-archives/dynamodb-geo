@@ -51,12 +51,11 @@
 			<version>1.0.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
-			<groupId>com.google.common</groupId>
-			<artifactId>guava-r09</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/guava-r09/guava-r09.jar</systemPath>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>26.0-jre</version>
 		</dependency>
 	</dependencies>
 
