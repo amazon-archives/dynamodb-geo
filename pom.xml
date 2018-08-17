@@ -12,7 +12,7 @@
 	<url>https://aws.amazon.com/dynamodb</url>
 
 	<scm>
-		<url>ssh://git.amazon.com:2222/pkg/GeoForDynamoDB</url>
+		<url>scm:git:https://github.com/flibbertigibbet/dynamodb-geo</url>
 	</scm>
 
 	<licenses>
@@ -24,7 +24,7 @@
 	</licenses>
 
 	<properties>
-		<aws-java-sdk.version>1.5.5</aws-java-sdk.version>
+		<aws-java-sdk.version>1.11.388</aws-java-sdk.version>
 	</properties>
 
 	<dependencies>
@@ -44,21 +44,18 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/io.sgr/s2-geometry-library-java -->
 		<dependency>
-			<groupId>com.google.common.geometry</groupId>
-			<artifactId>s2-geometry-java</artifactId>
+			<groupId>io.sgr</groupId>
+			<artifactId>s2-geometry-library-java</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/s2-geometry-library/s2-geometry-java.jar
-			</systemPath>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
-			<groupId>com.google.common</groupId>
-			<artifactId>guava-r09</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/guava-r09/guava-r09.jar</systemPath>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>26.0-jre</version>
 		</dependency>
 	</dependencies>
 
